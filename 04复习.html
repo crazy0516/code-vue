@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 全局组件
+        // 第一个参数是组件的名字, 第二个参数是 options
+        Vue.component('Vbtn', {
+            template : `
+                <button>按钮</button>
+            `
+        });
+
+        // 局部组件
+        var Vheader = {
+            data(){
+                return {}
+            },
+            template : `
+                <div>我是头部组件</div>
+            `,
+            methods : {}
+        }
+        var Vaside = {
+            template : `
+                <div>
+                    我是侧边栏组件
+                    <Vbtn />
+                </div>
+            `
+        }
+        var Vcontent = {
+            template : `
+                <div>
+                    我是内容组件
+                    <Vbtn />
+                    <Vbtn />
+                    <Vbtn />
+                </div>
+            `
+        }
+        // 声明子组件
+        var App = {
+            template : `
+                <div>
+                    <Vheader />
+                    <div>
+                        <Vaside />
+                        <Vcontent />
+                    </div>
+                </div>
+            `,
+            components : {
+                Vheader,
+                Vaside,
+                Vcontent
+            }
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {}
+            },
+            // 挂载子组件
+            components : {
+                App
+            },
+            // 父组件中使用子组件
+            template : `
+                <App />
+            `
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            margin: 20px 0;
+            padding: 10px 5px;
+            border-radius: 3px;
+        }
+        ul li.active{
+            background: #66ffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <audio :src="getCurrSrc" controls autoplay></audio>
+        <ul>
+            <li v-for='(item, index) in data' :class="{active:currIndex==index}" @click="musicPlay(index)">
+                <h2>{{item.id}}-歌名:{{item.name}}</h2>
+                <p>歌手:{{item.author}}</p>
+            </li>
+        </ul>
+    </div>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el : "#app",
+            data (){
+                return{
+                    data : [
+                        {id : 1, name : '十七岁', author : "刘德华", songSrc : 'src/music/十七岁.mp3'},
+                        {id : 2, name : '十七岁的雨季', author : "林志颖", songSrc : 'src/music/十七岁的雨季.mp3'},
+                        {id : 3, name : '屋顶', author : "周杰伦", songSrc : 'src/music/屋顶.mp3'},
+                        {id : 4, name : 'Sleep Alone', author : "陈奕迅", songSrc : 'src/music/Sleep Alone.mp3'}
+                    ],
+                    currIndex : 0
+                }
+            },
+            computed : {
+                // setter 也可以
+                getCurrSrc : {
+                    // 获取
+                    get(){
+                        return this.data[this.currIndex].songSrc;
+                    },
+                    // 设置
+                    set(newVal){
+                        // console.log(newVal);
+                        this.currIndex = newVal;
+                    }
+                }
+                
+            },
+            methods : {
+                musicPlay(index){
+                    console.log(this);
+                    this.getCurrSrc = index;
+                    // console.log(this.getCurrSrc);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

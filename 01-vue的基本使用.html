@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{msg}}</h2>
+        <h3>{{str.split('').reverse().join('')}}</h3>
+        <p>{{isTrue}}</p>
+    </div>
+    <!-- 引包; 开发环境 vue.js; 生产环境 vue.min.js -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 如果 template 中定义了内容
+        // 那么优先加载 template, 如果没有定义内容那么加载的是 #app 的模板
+        var data = {
+            msg : "hello",
+            str : "vue",
+            isTrue : 1==1
+        }
+
+        var vm = new Vue({
+            el : "#app",
+            data : data,
+            template : ``
+        })
+        console.log(vm.$el == document.getElementById('app'));//true
+        console.log(vm.$data == data);//true
+        console.log(vm);
+    </script>
+</body>
+</html>

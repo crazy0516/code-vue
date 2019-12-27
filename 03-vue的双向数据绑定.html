@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <!-- v-model 双向数据绑定的体现 只能应用在有 value 属性的控件上
+         语法糖: 它是 v-bind:value 和 v-on:input的体现
+    -->
+    <div id="app">
+        <!-- <input type="text" v-model="msg"> -->
+        <input type="text" :value="msg" @input='valueChange'>
+        <p>{{msg}}</p>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        /* window.onload=function(){
+            var a = document.createElement('a');
+            a.setAttribute('href', 'https://www.bilibili.com/video/av74128420?p=2');
+            a.innerHTML = '链接';
+            document.body.appendChild(a);
+            var href1 = document.getElementsByTagName("a")[0].getAttribute('href')
+            var href2 = document.getElementsByTagName("a")[0].href;
+            console.log(href1);
+            console.log(href2);
+        } */
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {
+                    msg: '米斯特王'
+                }
+            },
+            methods : {
+                valueChange(e){
+                    // console.log(e.target);
+                    this.msg = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

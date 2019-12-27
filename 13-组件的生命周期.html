@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        <App></App>
+    </div>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script>
+        /**
+         * beforeCreate
+         * created
+         * beforeMount
+         * mounted
+         * beforeUpdate
+         * updated
+         * activated
+         * deactivated
+         * beforeDestroy
+         * destroyed
+         * errorCaptured
+         * 
+        */
+        Vue.component('Test', {
+            data(){
+                return {
+                    msg : "米斯特王"
+                }
+            },
+            template : `
+                <template>
+                    <b>{{msg}}</b>
+                </template>
+            `,
+            beforeCreate(){
+                // 组件创建之前
+                console.log(this.msg);// undefined
+            },
+            created(){
+                // 组件创建之后  
+                console.log(this.msg);// 米斯特王
+                // 使用该组件就会调用 created 方法
+                // 在 created 这个方法中可以操作后端的数据   数据驱动视图
+                // 应用: 发起ajax请求
+            },
+            beforeMount(){
+                // 挂在数据到 DOM 之前会调用
+                console.log(document.getElementById("app"));
+            },
+            mounted(){
+                // 挂在数据到 DOM 之后会调用 Vue 作用以后的 DOM
+                // 操作 DOM
+                console.log(document.getElementById("app"));
+            },
+            beforeUpdate(){
+                // 在更新 DOM 之前调用该钩子
+                // 应用: 可以获取原始的 DOM
+            },
+            updated(){
+                // 在更新 DOM 之后调用该钩子
+                // 应用: 可以获取最新的 DOM
+            }
+        })
+        var App = {
+            data(){
+                return {}
+            },
+            template : `
+                <div class='app'>
+                    <Test />
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el : "#app",
+            data (){
+                return{}
+            },
+            components : {
+                App
+            }
+        })
+    </script>
+</body>
+</html>

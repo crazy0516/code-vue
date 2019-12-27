@@ -1,0 +1,130 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <style>
+        .default {
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            color: #606266;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .primary {
+            color: #fff;
+            background-color: #409eff;
+            border-color: #409eff;
+        }
+
+        .primary:hover {
+            background: #66b1ff;
+            border-color: #66b1ff;
+            color: #fff;
+        }
+
+        .success {
+            color: #fff;
+            background-color: #67c23a;
+            border-color: #67c23a;
+        }
+
+        .success:hover {
+            background: #85ce61;
+            border-color: #85ce61;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 全局组件
+        Vue.component('Vbtn', {
+            template: `
+                <!-- 插槽 内置组件 slot 作为承载分发内容的出口 -->
+                <button class="default" :class='type'>
+                    <slot>按钮</slot>
+                </button>
+            `,
+            props: ['type']
+        })
+
+        // 局部组件
+        var Vheader = {
+            template: `
+                <div>
+                    <h1>头部组件</h1>
+                    <Vbtn type="primary">主要按钮</Vbtn>
+                    <Vbtn type="success">成功按钮</Vbtn>
+                </div>
+            `
+        }
+        var Vcontent = {
+            template: `
+                <div>
+                    <p>内容组件</p>
+                    <Vbtn />
+                    <Vbtn />
+                    <Vbtn />
+                </div>
+            `
+        }
+        var Vfooter = {
+            template: `
+                <div>
+                    <div>脚部组件</div>
+                </div>
+            `
+        }
+
+        var App = {
+            template: `
+                <div>
+                    <Vheader /> 
+                    <Vcontent /> 
+                    <Vfooter /> 
+                </div>
+            `,
+            components: {
+                Vheader,
+                Vcontent,
+                Vfooter
+            }
+        }
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {}
+            },
+            components: {
+                App
+            },
+            template: `
+                <App />
+            `
+        })
+    </script>
+</body>
+
+</html>
