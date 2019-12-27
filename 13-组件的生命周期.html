@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="app">
-        <App></App>
+        <app></app>    
     </div>
     <script src="node_modules/vue/dist/vue.min.js"></script>
     <script>
@@ -31,17 +31,23 @@
                     msg : "米斯特王"
                 }
             },
-            template : `
-                <template>
-                    <b>{{msg}}</b>
-                </template>
+            template: `
+                <div>
+                    <p>{{msg}}</p>
+                    <button @click="changeHandler">改变</button>
+                </div>           
             `,
+            methods : {
+                changeHandler(){
+                    this.msg = this.msg + "帅哥"
+                }
+            },
             beforeCreate(){
                 // 组件创建之前
                 console.log(this.msg);// undefined
             },
             created(){
-                // 组件创建之后  
+                // 组件创建之后
                 console.log(this.msg);// 米斯特王
                 // 使用该组件就会调用 created 方法
                 // 在 created 这个方法中可以操作后端的数据   数据驱动视图
@@ -59,28 +65,53 @@
             beforeUpdate(){
                 // 在更新 DOM 之前调用该钩子
                 // 应用: 可以获取原始的 DOM
+                console.log("原始的 DOM :" + document.getElementById('app').innerHTML);
             },
             updated(){
                 // 在更新 DOM 之后调用该钩子
                 // 应用: 可以获取最新的 DOM
+                console.log("最新的 DOM :" + document.getElementById('app').innerHTML);
+            },
+            beforeDestroy(){
+                // 销毁之前
+                console.log("beforeDestroy");
+            },
+            destroyed(){
+                // 销毁之后
+                console.log("destroyed");
+            },
+            activated(){
+                console.log("组件被激活了");
+            },
+            deactivated(){
+                console.log("组件被停用了");
             }
         })
+
         var App = {
             data(){
-                return {}
+                return {
+                    isShow : true
+                }
             },
+            // vue 内置组件 <keep-alive></keep-alive> 
+            // 能在组件切换的过程中将状态保留在内存中, 防止重复渲染 DOM
             template : `
                 <div class='app'>
-                    <Test />
+                    <keep-alive>
+                        <Test v-if="isShow" />
+                    </keep-alive>
+                    <button @click="isShow=!isShow">显示删除</button>
                 </div>
             `
         }
+
         var vm = new Vue({
             el : "#app",
             data (){
                 return{}
             },
-            components : {
+            components:{
                 App
             }
         })

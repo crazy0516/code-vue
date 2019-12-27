@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.min.js"></script>
+    <script>
+        // 1.1 props和$emit
+        // 父组件向子组件传递数据是通过prop传递, 子组件传递数据给父组件是通过$emit触发事件来完成的
+        /*
+            例子: 父组件App, 子组件Child
+            1).父组件传递了msg数据给子组件, 并且通过v-on绑定了一个getChildData事件来监听子组件的触发事件
+            2).子组件通过props得到相关的msg数据, 最后通过this.$emit触发了getChildData事件
+        */
+        Vue.component('Child', {
+            data(){
+                return{
+
+                }
+            },
+            template : `
+                <div>
+                    <p>{{msg}}</p>
+                    <input type="text" v-model='msg' @input="passData(msg)" >
+                </div>
+            `,
+            props : ['msg'],
+            methods : {
+                passData(msg){
+                    this.msg = msg;
+                }
+            }
+        })
+        var App = {
+            data(){
+                return {
+                    msg : "米斯特王"
+                }
+            },
+            template : `
+                <div>
+                    <Child :msg = 'msg' />
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {}
+            },
+            components : {
+                App
+            },
+            template : `
+                <App />
+            `
+        })
+    </script>
+</body>
+</html>
