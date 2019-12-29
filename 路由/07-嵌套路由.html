@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-router</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/vue-router.js"></script>
+    <script>
+        var Home = {
+            template : `
+                <div>
+                    <h3>首页内容</h3>
+                    <router-link to='/home/about'>介绍</router-link>
+                    <router-link to='/home/addr'>地址</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var About = {
+            template : `
+                <div>
+                    <span>公司介绍</span>
+                </div>
+            `
+        }
+        var Addr = {
+            template : `
+                <div>
+                    <span>公司地址</span>
+                </div>
+            `
+        }
+        var router = new VueRouter({
+            routes : [
+                {
+                    path : '/home',
+                    name : 'home',
+                    component : Home,
+                    children : [
+                        {
+                            path : 'about',
+                            component : About
+                        },
+                        {
+                            path : 'addr',
+                            component : Addr
+                        }
+                    ]
+                }
+            ]
+        })
+        var App = {
+            template : `
+                <div>
+                    <router-link :to='{name:"home"}'>Home</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return{}
+            },
+            router,
+            components : {
+                App
+            },
+            template : `
+                <App />
+            `
+        })
+    </script>
+</body>
+</html>

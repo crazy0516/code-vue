@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-router</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/vue-router.js"></script>
+    <script>
+        // 让 Vue 使用该 VueRouter 创建
+        // Vue.use(VueRouter);
+
+        // 路由匹配的组件
+        var Login = {
+            template : `
+                <div>我是登录页面</div>
+            `
+        }
+        var Register = {
+            template : `
+                <div>我是注册页面</div>
+            `
+        }
+        // 1.创建 router 对象
+        var router = new VueRouter({
+            // 2.配置路由对象
+            routes : [
+                // 路由匹配的规则
+                {
+                    path : '/login',
+                    component : Login
+                },
+                {
+                    path : '/register',
+                    component : Register
+                }
+            ]
+        })
+        // 引入 vue-router 模块 给咱们抛出来两个全局的组件 
+        // router-link ==> a  
+        // to ==> href   
+        // router-view ==> 路由匹配组件的出口
+        var App = {
+            template : `
+                <div>
+                    <router-link to='/login'>登录页面</router-link>
+                    <router-link to='/register'>注册页面</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {}
+            },
+            components : {
+                App
+            },
+            // 3.交给 vue 实例化对象管理
+            router,
+            template : `
+                <App />
+            `
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script>
+        var App = {
+            data(){
+                return {
+                    isShow : false
+                }
+            },
+            template : `
+                <div class='app'>
+                    <input type='text' v-show='isShow' ref='input' />
+                </div>
+            `,
+            mounted(){
+                this.isShow = true;
+                console.log(this.$refs.input);
+
+                // 在 DOM 更新
+                // $nextTick() 是在 DOM 更新循环结束之后执行回调函数, 在修改数据之后使用此方法
+                // 在回调中获取到更新之后的 DOM
+
+                this.$nextTick(() => {
+                    this.$refs.input.focus();
+                })
+            }
+        }
+        var vm = new Vue({
+            el : "#app",
+            data (){
+                return {
+
+                }
+            },
+            components : {
+                App
+            },
+            template : `
+                <App />
+            `
+        })
+        // vm.$mount(document.querySelector('#app'));
+    </script>
+</body>
+</html>
