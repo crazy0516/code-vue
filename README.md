@@ -37,3 +37,5 @@
 ### git checkout -b '分支名' //创建并切换分支
 ### git switch -c '分支名' //创建并切换分支
 ### git branch -d '分支名' //删除分支
+
+### git config --global credential.helper store //记住用户名密码
