@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/axios.js"></script>
+    <script>
+        Vue.prototype.$axios = axios;
+        var App = {
+            data(){
+                return {
+                }
+            },
+            template : `
+                <div>
+                    <button @click='sendAll'>并发请求</button> 
+                </div>
+            `, 
+            methods : {
+                sendAll(){
+                    this.$axios.defaults.baseURL = 'http://127.0.0.1:8888';
+                    this.$axios.get('', {
+                        params : {id : 1},
+                        // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+                        transformResponse: [function (data) {
+                            // 对 data 进行任意转换处理
+                            // console.log(data);
+                            data = JSON.parse(data);
+                            // console.log(data);
+                            data.msg = "修改数据";
+                        }],
+                    }).then(res => {
+                        console.log(res);
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }
+            }
+        }
+        var vm = new Vue({
+            el : '#app',
+            data(){
+                return {}
+            },
+            template : `
+                <App />
+            `,
+            components : {
+                App
+            }
+        })
+    </script>
+</body>
+</html>

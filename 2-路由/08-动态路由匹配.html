@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-router</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/vue-router.js"></script>
+    <script>
+        /*
+        提醒一下，当使用路由参数时,例如从 /timeline/frontrend 导航到 /timeline/backend,
+        原来的组件实例会被复用。因为两个路由都渲染同个组件,比起销毁再创建,
+        复用则显得更加高效。不过,这也意味着组件的生命周期钩子不会再被调用。
+        */
+        var Timeline = {
+            template : `
+                <div id='timeline'>
+                    <router-link :to='{name:"comDesc", params:{id:"frontrend"}}'>前端</router-link>
+                    <router-link :to='{name:"comDesc", params:{id:"backend"}}'>后端</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var Pins = {
+            template : `
+                <div>沸点内容</div>
+            `
+        }
+        var ComDesc = {
+            data(){
+                return {
+                    msg : ""
+                }
+            },
+            template : `
+                <div>
+                    我是{{msg}}
+                </div>
+            `,
+            created(){
+                // 发 ajax 请求
+                console.log(1);
+                this.msg = '前端';
+            },
+            // 在当前的组件内部 监听路由信息的变化
+            watch : {
+                '$route' (to, from) {
+                    // 对路由变化作出响应...
+                    // console.log(to, from);
+
+                    // 发送 ajax 请求
+                    this.msg = to.params.id;
+                }
+            },
+            // beforeRouteUpdate(to, from, next){
+            //     console.log(to);
+            //     console.log(from);
+            //     console.log(next);
+            // }
+        }
+        var router = new VueRouter({
+            // mode : 'history',
+            routes : [
+                {
+                    path : '/timeline',
+                    component : Timeline,
+                    children : [
+                        {
+                            name : 'comDesc',
+                            path : '/timeline/:id',  // 动态路由的参数, 以 : 开头
+                            component : ComDesc
+                        }
+                    ]
+                },
+                {
+                    path : '/pins',
+                    component : Pins
+                }
+            ]
+        })
+        var App = {
+            template : `
+                <div>
+                    <router-link to='/timeline'>首页</router-link>
+                    <router-link to='/pins'>沸点</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {}
+            },
+            router,
+            components : {
+                App
+            },
+            template : `
+                <App />
+            `,
+            
+        })
+    </script>
+</body>
+</html>

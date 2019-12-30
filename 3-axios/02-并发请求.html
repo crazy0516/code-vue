@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/axios.js"></script>
+    <script>
+        Vue.prototype.$axios = axios;
+        var App = {
+            data(){
+                return {
+                    res1 : "",
+                    res2 : ""
+                }
+            },
+            template : `
+                <div>
+                    <p>响应1 : {{res1}}</p>    
+                    <p>响应2 : {{res2}}</p>
+                    <button @click='sendAll'>并发请求</button> 
+                </div>
+            `, 
+            methods : {
+                sendAll(){
+                    // 请求1 get : /
+                    // 请求2 post : /add
+
+                    this.$axios.defaults.baseURL = 'http://127.0.0.1:8888';
+                    var r1 = this.$axios.get('');
+                    var r2 = this.$axios.post('add', 'a=1');
+                    this.$axios.all([r1, r2]).then(this.$axios.spread((res1, res2) => {
+                        // 请求全部成功
+                        console.log(res1, res2);
+                        this.res1 = res1.data.msg;
+                        this.res2 = res2.data;
+                    })).catch(err => {
+                        console.log(err);
+                    })
+                }
+            }
+        }
+        var vm = new Vue({
+            el : '#app',
+            data(){
+                return {}
+            },
+            template : `
+                <App />
+            `,
+            components : {
+                App
+            }
+        })
+    </script>
+</body>
+</html>
