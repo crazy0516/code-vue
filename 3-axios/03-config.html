@@ -18,7 +18,7 @@
             },
             template : `
                 <div>
-                    <button @click='sendAll'>并发请求</button> 
+                    <button @click='sendAll'>请求</button>
                 </div>
             `, 
             methods : {
@@ -29,13 +29,14 @@
                         // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
                         transformResponse: [function (data) {
                             // 对 data 进行任意转换处理
-                            // console.log(data);
                             data = JSON.parse(data);
                             // console.log(data);
                             data.msg = "修改数据";
+
+                            return data;
                         }],
                     }).then(res => {
-                        console.log(res);
+                        console.log(res.data.msg);
                     }).catch(err => {
                         console.log(err);
                     })
