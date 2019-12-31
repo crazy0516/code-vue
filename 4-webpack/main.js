@@ -3,6 +3,7 @@ import Vue from '../src/js/vue';
 
 import App from './App';
 
+// 导出对象
 import {num1,num2, add} from './App';
 console.log(num1, num2);
 console.log(add(3, 5));
