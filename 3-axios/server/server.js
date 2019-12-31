@@ -53,7 +53,7 @@ app.use(async(ctx, next) => {
     ctx.response.set('Access-Control-Allow-Origin', '*');
 
     ctx.response.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-    // ctx.response.set('Access-Control-Allow-Headers', 'token');
+    ctx.response.set('Access-Control-Allow-Headers', 'token');
 
     await next();
 })

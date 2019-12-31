@@ -111,6 +111,7 @@ var num1 = 2; // 作为整个对象 key 导出
 var num2 = 3;
 
 
+// 导出函数
 function add(x, y){
     return console.log(x+y);
 }
@@ -131,6 +132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+// 导出对象
 
 console.log(__WEBPACK_IMPORTED_MODULE_1__App__["c" /* num1 */], __WEBPACK_IMPORTED_MODULE_1__App__["d" /* num2 */]);
 console.log(Object(__WEBPACK_IMPORTED_MODULE_1__App__["a" /* add */])(3, 5));
