@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios 拦截器</title>
+    <style>
+        .loading1{
+            width:50px;
+            height:40px;
+            margin:60px auto;
+            text-align:center;
+        }
+        .loading1 span{
+            width:5px;
+            height:100%;
+            display:inline-block;
+            background:#67CF22;;
+            animation: mymove 1.2s infinite ease-in-out;
+            -webkit-animation:mymove 1.2s infinite ease-in-out;
+             /*  
+                mymove代表动画名字
+                1.2s代表执行时间
+                infinite表示一直循环执行
+                ease-in-out表示先慢后快的缓动
+            */
+        }
+        .loading1 >span:nth-child(2){
+            -webkit-animation-delay:-1.0s;
+            animation-delay:-1.0s;
+        }
+        .loading1 >span:nth-child(3){
+            -webkit-animation-delay:-0.9s;
+            animation-delay:-0.9s;
+        }
+        .loading1 >span:nth-child(4){
+            -webkit-animation-delay:-0.8s;
+            animation-delay:-0.8s;
+        }
+        .loading1 >span:nth-child(5){
+            -webkit-animation-delay:-0.7s;
+            animation-delay:-0.7s;
+        }
+        @keyframes mymove{
+            0%{transform:scaleY(0.4);}
+            25%{transform:scaleY(1.0);}
+            50%{transform:scaleY(0.4);}
+            75%{transform:scaleY(0.4);}
+            100%{transform:scaleY(0.4);}
+        }
+        @-webkit-keyframes mymove{
+            0%{transform:scaleY(0.4);}
+            25%{transform:scaleY(1.0);}
+            50%{transform:scaleY(0.4);}
+            75%{transform:scaleY(0.4);}
+            100%{transform:scaleY(0.4);}
+        }
+    </style> 
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../src/js/vue.js"></script>
+    <script src="../src/js/axios.js"></script>
+    <script>
+        Vue.prototype.$axios = axios;
+        var App = {
+            data(){
+                return {
+                    isShow : false
+                }
+            },
+            template : `
+                <div>
+                    <div class='loading1' v-show='isShow'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>    
+                    </div>
+                    <button @click='sendAjax'>发请求</button>
+                </div>
+            `,
+            methods : {
+                sendAjax(){
+                    // 模拟类似 cookie 的机制
+                    // 添加请求拦截器
+                    this.$axios.interceptors.request.use((config) => {
+                        console.log(config);
+
+                        var token = localStorage.getItem('token');
+                        if(token){
+                            config.headers['token'] = token;
+                        }
+
+                        // this.inShow = true;
+
+                        return config;
+                    }, function(err){
+                        // 对请求错误做些什么
+                        return Promise.reject(err);
+                    })
+
+                    // 添加响应拦截器
+                    this.$axios.interceptors.response.use((response) => {
+                        // 对响应数据做点什么
+                        console.log(response.data.token);
+                        if(response.data.token){
+                            localStorage.setItem('token', response.data.token);
+                        }
+
+                        this.isShow = true;
+                        return response;
+                    }, function (error) {
+                        // 对响应错误做点什么
+                        return Promise.reject(error);
+                    });
+
+                    this.$axios.get('http://127.0.0.1:8888/')
+                    .then(res => {
+                        console.log(res);
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }
+            }
+        }
+        var vm = new Vue({
+            el : "#app",
+            data(){
+                return {}
+            },
+            components : {
+                App
+            },
+            template : `
+                <App />
+            `
+        })
+    </script>
+</body>
+</html>
