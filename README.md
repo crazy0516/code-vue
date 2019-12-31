@@ -39,3 +39,13 @@
     + git branch -d '分支名' //删除分支
     + git branch -f '分支名' //到指定分支
     + git config --global credential.helper store //记住用户名密码
+
++ npm install 本身就有一个别名 npm i
+    + npm i module_name -S    即    npm install module_name --save     写入dependencies，发布到生产环境
+    + npm i module_name -D    即    npm install module_name --save-dev  写入devDependencies，发布到开发环境
+    + npm i module_name -g    即    global全局安装(命令行使用)
+    + npm i module_name       即    本地安装(将安装包放在 ./node_modules 下)
+
++ 在《Javascript权威指南》中这样定义：
+    + 参数有形参（parameter）和实参（argument）的区别，形参相当于函数中定义的变量，实参是在运行时的函数调用时传入的参数。
+    + 说明白就是，形参就是函数声明时的变量，实参是我们调用该函数时传入的具体参数。
