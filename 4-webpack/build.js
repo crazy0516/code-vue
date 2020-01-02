@@ -60,11 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 全局 window */
 /***/ (function(module, exports) {
 
 var g;
@@ -91,51 +91,28 @@ module.exports = g;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return num1; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return num2; });
-/* harmony export (immutable) */ __webpack_exports__["a"] = add;
-var App = {
-    template : `
-        <div>我是一个入口组件</div>
-    `
-}
-
-// 声明并导出
-var num1 = 2; // 作为整个对象 key 导出
-
-// 声明再导出
-var num2 = 3;
-
-
-// 导出函数
-function add(x, y){
-    return console.log(x+y);
-}
-
-/* harmony default export */ __webpack_exports__["b"] = (App);
-
-/***/ }),
-/* 2 */
+/* 1 导出了 main.js 的代码, 一个 vue 实例对象 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_js_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_js_vue__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_js_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__src_js_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(6);
 // exMoudule 的模块导入
 
 
-
-
+// import App from './App';
 // 导出对象
+// import {num1,num2, add} from './App';
 
-console.log(__WEBPACK_IMPORTED_MODULE_1__App__["c" /* num1 */], __WEBPACK_IMPORTED_MODULE_1__App__["d" /* num2 */]);
-console.log(Object(__WEBPACK_IMPORTED_MODULE_1__App__["a" /* add */])(3, 5));
+
+
+console.log(__WEBPACK_IMPORTED_MODULE_1__App__["b" /* num1 */]);
+
+// console.log(num1);
+// console.log(num2);
+// console.log(add(3, 5));
 
 new __WEBPACK_IMPORTED_MODULE_0__src_js_vue___default.a({
     el : "#app",
@@ -143,7 +120,7 @@ new __WEBPACK_IMPORTED_MODULE_0__src_js_vue___default.a({
         return {}
     },
     components : {
-        App: __WEBPACK_IMPORTED_MODULE_1__App__["b" /* default */]
+        App : __WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */]
     },
     template : `
         <App />
@@ -151,7 +128,7 @@ new __WEBPACK_IMPORTED_MODULE_0__src_js_vue___default.a({
 })
 
 /***/ }),
-/* 3 */
+/* 2 vue.js 源码 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -12120,10 +12097,10 @@ new __WEBPACK_IMPORTED_MODULE_0__src_js_vue___default.a({
 
 }));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(4).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(3).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 3, 4, 5 都是和 node_modules/setimmediate 有关, vue 的 DOM 异步更新机制有关 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -12179,7 +12156,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(5);
+__webpack_require__(4);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -12193,7 +12170,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -12383,10 +12360,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(5)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12574,6 +12551,34 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+/* 6 于 App.js 解析有关 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return num1; });
+/* unused harmony export num2 */
+/* unused harmony export add */
+var App = {
+    template : `
+        <div>我是一个入口组件</div>
+    `
+}
+
+// 声明并导出
+var num1 = 2; // 作为整个对象 key 导出
+
+// 声明再导出
+var num2 = 3;
+
+
+// 导出函数
+function add(x, y){
+    return console.log(x+y);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ })
 /******/ ]);
