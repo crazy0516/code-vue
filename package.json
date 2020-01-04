@@ -1,0 +1,26 @@
+{
+  "name": "code-vue",
+  "version": "1.0.0",
+  "description": "+ vue 入门学习教程",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazy0516/code-vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crazy0516/code-vue/issues"
+  },
+  "homepage": "https://github.com/crazy0516/code-vue#readme"
+}
