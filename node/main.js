@@ -6,7 +6,7 @@ const fs = require('fs');
 // console.log('程序执行结束');
 
 // 非阻塞代码实例
-fs.readFile('input1.txt', (err, data) => {
+fs.readFile('input.txt', (err, data) => {
     if(err) return console.log(err);
     console.log(data.toString());
 })
