@@ -17,7 +17,7 @@ var  addSqlParams = ['菜鸟工具', 'https://c.runoob.com','23453', 'CN'];
 var modSql = 'UPDATE websites SET name = ?,url = ? WHERE Id = ?';
 var modSqlParams = ['菜鸟移动站', 'https://m.runoob.com',8];
 // 删除
-var delSql = 'DELETE FROM websites where id=8';
+var delSql = 'DELETE FROM websites where id=5';
 
 // connection.query(sql, (error, results) => {
 // connection.query(addSql, addSqlParams, (error, results) => {
