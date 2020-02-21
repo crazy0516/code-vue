@@ -17,8 +17,7 @@ Vue.component("radioSelect", {
             default: function () {
                 return ["这道题是空的"];
             }
-        },
-
+        }
     },
     data: function () {
         let _this = this;
@@ -34,21 +33,21 @@ Vue.component("radioSelect", {
         }
     },
     template: `
-    <div>
-        <p>{{title}}</p>
-        <ul>
-            <li v-for="(item,index) in choices">
-                <input v-model="culValue" :value="item" type="radio" :id="values[index]" :name="name" > 
-                <label :for="values[index]">{{item}}</label>
-            </li>
-        </ul>
-    </div>
+        <div>
+            <p>{{title}}</p>
+            <ul>
+                <li v-for="(item,index) in choices">
+                    <input v-model="culValue" :value="item" type="radio" :id="values[index]" :name="name" > 
+                    <label :for="values[index]">{{item}}</label>
+                </li>
+            </ul>
+        </div>
     `,
     watch: {
         culValue: function (val) {
             this.$emit("pick", val)
         }
-    },
+    }
 })
 
 Vue.component("multiSelect", {
@@ -67,7 +66,6 @@ Vue.component("multiSelect", {
                 return ["这道题是空的"];
             }
         }
-
     },
     data: function () {
         let _this = this;
@@ -81,21 +79,21 @@ Vue.component("multiSelect", {
         }
     },
     template: `
-    <div>
-        <p>{{title}}</p>
-        <ul>
-            <li v-for="(item,index) in choices">
-                <input v-model="culValue" :value="item" type="checkbox" :id="values[index]" :name="name" > 
-                <label :for="values[index]">{{item}}</label>
-            </li>
-        </ul>
-    </div>
+        <div>
+            <p>{{title}}</p>
+            <ul>
+                <li v-for="(item,index) in choices">
+                    <input v-model="culValue" :value="item" type="checkbox" :id="values[index]" :name="name" > 
+                    <label :for="values[index]">{{item}}</label>
+                </li>
+            </ul>
+        </div>
     `,
     watch: {
         culValue: function (val) {
             this.$emit("pick", val)
         }
-    },
+    }
 })
 
 Vue.component("typetext", {
@@ -118,14 +116,12 @@ Vue.component("typetext", {
         text: function (val) {
             this.$emit("pick", val)
         }
-    }
-    ,
+    },
     template: `
     <div>
         <p>{{title}}</p>
         <div>
             <textarea v-model="text"  cols="30" rows="10"></textarea>
         </div>
-    </div>
-    `
+    </div>`
 })
