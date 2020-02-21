@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
-    // password : 'root'
+    // password : 'root',
     database : 'nodemysql'
 })
 db.connect((err) => {
@@ -47,9 +47,10 @@ app.get('/createpoststable', (req, res) => {
 // 往 posts 数据表里面插入内容
 app.get('/addpost1', (req, res) => {
     let post = [
-        {title : 'post one', body : 'easth'},
-        {title : 'post two', body : 'weasth'}
+        {title : 'post two', body : 'weasth'},
+        {title : 'post three', body : 'north'}
     ];
+    // console.log(typeof post);
     let sql = 'INSERT INTO posts SET ?';//问号 防止sql注入 会在执行时把post传进sql语句 替换问号
     db.query(sql, post, (err, result) => {
         if(err){
@@ -57,6 +58,7 @@ app.get('/addpost1', (req, res) => {
         }else{
             console.log(result);
             res.send('post1 added...')
+            // res.json(result);
         }
     })
 })
