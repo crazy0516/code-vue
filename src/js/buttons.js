@@ -9,8 +9,7 @@ Vue.component("mybtn", {
         <button @click="handeClick" :disabled="banned">
             <slot></slot>
         </button>
-    `
-    ,
+    `,
     methods: {
         handeClick: function () {
             this.$emit("click")

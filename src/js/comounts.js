@@ -1,5 +1,5 @@
 Vue.component("radioSelect", {
-    //组件里的属性
+    //组件里的属性 
     props: {
         //限制只能为String,默认值为gender
         name: {

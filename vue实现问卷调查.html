@@ -21,8 +21,9 @@
             </typetext>
         </div>
         <mybtn v-show="page == count-1" :banned="isBanned" @click="handleSubmit">提交</mybtn>
+        <mybtn v-show="page >= 1" :banned="isBanned" @click="handlePrev">上一步</mybtn>
         <mybtn v-show="page < count-1" :banned="isBanned" @click="handleNext">下一步</mybtn>
-        <mybtn @click="handleReset" :banned="false">重置</mybtn>
+        <mybtn :banned="false" @click="handleReset">重置</mybtn>
     </div>
     <script src="src/js/vue.min.js"></script>
     <script src="src/js/comounts.js"></script>
@@ -37,7 +38,7 @@
                     {
                         name: 'gender',
                         type: 'radio',
-                        title: '你的性别?',
+                        title: '你的性别',
                         choices: ["男", "女", "保密"]
                     },
                     {
@@ -74,7 +75,7 @@
                             }
                             break;
                         case "multi":
-                            if (val.length >= 3) {
+                            if (val.length >= 2) {
                                 this.isBanned = false;
                                 question.pickeds = val;
                                 return;
@@ -97,7 +98,7 @@
                             this.isBanned = question.picked ? false : true;
                             break;
                         case "multi":
-                            this.isBanned = question.picked.length >= 3 ? false : true;
+                            this.isBanned = question.picked.length >= 2 ? false : true;
                             break;
                         case "typetext":
                             this.isBanned = question.text.length >= 10 ? false : true;
