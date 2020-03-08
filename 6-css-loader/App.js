@@ -1,6 +1,15 @@
+import imgSrc from './pic.jpg'
+
 var App = {
+    data(){
+        return {
+            imgSrc : imgSrc
+        }
+    },
     template : `
-        <div>我是一个入口组件</div>
+        <div>
+            <img :src='imgSrc' alt='图片' />
+        </div>
     `
 }
 
