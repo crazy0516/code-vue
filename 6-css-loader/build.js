@@ -430,7 +430,7 @@ module.exports = function (list, options) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(5);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body{\r\n    background-color: green;\r\n}", ""]);
+exports.push([module.i, "body{\r\n    background-color: forestgreen;\r\n    color: #fff;\r\n}", ""]);
 // Exports
 module.exports = exports;
 

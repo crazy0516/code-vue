@@ -10,20 +10,20 @@ module.exports = {
     },
     // 声明模块 (包含各个loader)
     module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    }
-                ]
-            }
-        ]
+        // rules: [
+        //     {
+        //         test: /\.css$/,
+        //         use: [
+        //             { loader: 'style-loader' },
+        //             {
+        //                 loader: 'css-loader',
+        //                 options: {
+        //                     modules: true
+        //                 }
+        //             }
+        //         ]
+        //     }
+        // ]
     },
     watch: true,// 文件监视改动 自动产出build.js
 }
