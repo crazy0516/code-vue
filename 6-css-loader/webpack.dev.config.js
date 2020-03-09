@@ -29,11 +29,11 @@ config = {
         //     }
         // ]
         loaders:[
+            {
                 // style-loader css-loader
                 // 遇到后缀名.css的文件, webpack先用css-loader加载器去解析这个文件
                 // 最后计算完的css, 将会使用style-loader生成一个内容为最终解析完的css代码的style标签, 放到head标签里面
                 // webpack在打包过程中, 遇到后缀为css的文件, 就会使用style-loader和css-loader去加载这个文件。
-            {
                 test: /\.css$/,
                 loader:'style-loader!css-loader'
             },
@@ -45,8 +45,21 @@ config = {
                 test:/\.(jpg|png|gif|svg)$/,
                 loader:'url-loader?limit=60000'// limit数值大于字节数图片会以base64显示
                 // loader:'url-loader'
+            },
+            {
+                // 处理es6 7 8
+                test: /\.js$/,
+                loader:'babel-loader',
+                exclude:/node_modules/,// 排除node_modules文件
+                options:{
+                    // presets:['env'],// 处理关键字
+                    // plugins:['transform-runtime'],// 处理函数
+                }
+            },
+            {
+                test:/\.vue$/,
+                loader:'vue-loader'
             }
-
         ]
     },
     // 插件

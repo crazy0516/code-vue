@@ -26,3 +26,19 @@
     + npm i url-loader file-loader -D(安装到开发环境)
     + peerDependencies WARNING file-loader@* requires a peer of webpack@^4.0.0 || ^5.0.0 but webpack@3.12.0 was installed
     + peerDependencies警告文件加载程序@*需要webpack@^4.0.0 | | ^5.0.0的对等方，但webpack@3.12.0已安装
+
++ webpack-dev-server(2.9.0版本)
+    + 安装  npm(cnpm) install webpack-dev-server@2.9.0 --save-dev
+    + 常用配置参数(在package.json文件中配置)
+        + --open        自动打开浏览器
+        + --hot         热更新, 不在刷新的情况下替换css样式
+        + --inline      自动刷新
+        + --port 9999   指定端口
+        + --process     显示编译进度
+    + 实例  "dev": "webpack-dev-server --open --hot --inline --config ./webpack.dev.config.js"
+
++ es6解析
+    + 安装  npm(cnpm) install babel-core babel-loader babel-preset-env babel-plugin-transform-runtime -D
+    + Module build failed: Error: Cannot find module '@babel/core' babel-loader@8 requires Babel 7.x (the package '@babel/core'). If you'd like to use Babel 6.x ('babel-core'), you should install 'babel-loader@7'.
+    + 模块生成失败：错误：找不到模块“@babel/core” babel loader@8需要babel 7.x（包'@babel/core'）。如果你想使用Babel 6.x（'Babel-core'），你应该安装'Babel loader@7'。
+    + npm(cnpm) install babel-loader@7.1.5 -D
