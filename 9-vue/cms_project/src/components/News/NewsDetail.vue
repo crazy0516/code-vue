@@ -44,7 +44,7 @@ export default {
 }
 .item p {
   color: rgb(14, 139, 255);
-  font-size: 24px;
+  font-size: .7rem;
   font-weight: 600;
   margin-bottom: 10px;
 }

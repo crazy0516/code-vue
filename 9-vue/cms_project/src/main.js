@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 import Moment from 'moment'
+import '../config/rem'
+// import Rem from 'rem'
+// Vue.use(Rem)
 
 Vue.config.productionTip = false
 

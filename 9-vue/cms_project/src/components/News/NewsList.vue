@@ -72,12 +72,11 @@ export default {
   text-align: right;
 }
 .times p{
-  font-size: 16px;
+  font-size: .7rem;
   color: rgb(14, 139, 255);
-  padding-bottom: 10px;
 }
 .times span{
-  font-size: 14px;
+  font-size: .6rem;
   color: #333;
 }
 </style>

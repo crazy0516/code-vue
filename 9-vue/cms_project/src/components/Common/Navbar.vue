@@ -37,6 +37,7 @@ h3{
 .back{
     margin-left: 15px;
     font-family: '宋体';
+    font-size: .6rem;
 }
 .desc_title{
     position: absolute;
@@ -45,5 +46,6 @@ h3{
     left: 50%;
     margin-left: -100px;
     text-align: center;
+    font-size: .8rem;
 }
 </style>

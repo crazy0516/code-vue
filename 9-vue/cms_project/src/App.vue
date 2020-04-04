@@ -5,7 +5,7 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
+      <mt-button icon="more" slot="right" @click="reload"></mt-button>
     </mt-header>
 
     <!-- 路由组件的出口 -->
@@ -14,9 +14,9 @@
     <!-- 底部栏 -->
     <div class="tabbar">
       <ul>
-        <li v-for='tab in tabs' :key='tab.id'>
-          <router-link :to='tab.routerName'>
-            <img :src="tab.imgSrc" alt="">
+        <li v-for="tab in tabs" :key="tab.id">
+          <router-link :to="tab.routerName">
+            <img :src="tab.imgSrc" alt />
             <p>{{tab.title}}</p>
           </router-link>
         </li>
@@ -39,19 +39,19 @@
         <img slot="icon" src="../static/img/logo.png" />
         搜索
       </mt-tab-item>
-    </mt-tabbar> -->
+    </mt-tabbar>-->
   </div>
 </template>
 
 <script>
-import src from './assets/logo.png'
+import src from "./assets/logo.png";
 
 let tabs = [
-  {id:1, title:'首页', imgSrc:src, routerName:{name:'home'}},
-  {id:2, title:'订单', imgSrc:src, routerName:{name:'vip'}},
-  {id:3, title:'购物车', imgSrc:src, routerName:{name:'cart'}},
-  {id:4, title:'搜索', imgSrc:src, routerName:{name:'search'}}
-]
+  { id: 1, title: "首页", imgSrc: src, routerName: { name: "home" } },
+  { id: 2, title: "订单", imgSrc: src, routerName: { name: "vip" } },
+  { id: 3, title: "购物车", imgSrc: src, routerName: { name: "cart" } },
+  { id: 4, title: "搜索", imgSrc: src, routerName: { name: "search" } }
+];
 
 export default {
   name: "App",
@@ -59,52 +59,57 @@ export default {
     return {
       selected: "",
       tabs: tabs
-    }
+    };
   },
-  watch:{
-    selected(newV, oldV){
+  watch: {
+    selected(newV, oldV) {
       console.log(newV);
 
-      this.$router.push({name : this.selected})
+      this.$router.push({ name: this.selected });
+    }
+  },
+  methods: {
+    //点击图标刷新页面
+    reload() {
+      window.location.reload();
     }
   }
 };
 </script>
 
 <style>
-.tabbar .link-active{
+.tabbar .link-active {
   background: rgb(231, 231, 231);
 }
-.tabbar{
+.tabbar {
   width: 100%;
   background: #fff;
   position: fixed;
   bottom: 0;
 }
-.tabbar ul{
+.tabbar ul {
   width: 100%;
   overflow: hidden;
 }
-.tabbar ul li{
+.tabbar ul li {
   float: left;
   width: 25%;
   height: 55px;
   text-align: center;
-  
 }
-.tabbar ul li a{
+.tabbar ul li a {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding-top: 10px;
   color: #000;
 }
-.tabbar ul li p{
+.tabbar ul li p {
   font-size: 12px;
 }
-.tabbar ul li a img{
+.tabbar ul li a img {
   width: 25px;
   height: 25px;
   display: inline-block;
+  vertical-align: middle;
 }
 </style>
